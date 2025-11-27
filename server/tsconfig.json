@@ -14,8 +14,6 @@
       "@generated/*": ["generated/prisma/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "generated/prisma"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
