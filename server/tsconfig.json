@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "ES2020",
+    "module": "ESNext",
     "target": "ES2020",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "outDir": "./dist",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
@@ -14,5 +16,6 @@
   },
   "include": [
     "src/**/*",
+    "generated/prisma"
   ]
 }

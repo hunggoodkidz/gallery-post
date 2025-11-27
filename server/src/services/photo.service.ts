@@ -1,4 +1,4 @@
-import prisma from "../../prisma/client";
+import prisma from "src/prisma/client";
 
 export const createPhotoRecord = async (
   imageUrl: string,

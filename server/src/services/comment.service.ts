@@ -1,4 +1,4 @@
-import prisma from "../../prisma/client.js";
+import prisma from "src/prisma/client";
 
 export const createCommentRecord = async (
   photoId: string,
