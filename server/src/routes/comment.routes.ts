@@ -1,5 +1,12 @@
 import { Router } from "express";
-import { addComment } from "../controllers/comment.controller.js";
+import { addComment, getCommentsByPhotoId } from "../controllers/comment.controller.js";
+
+/**
+ * @openapi
+ * tags:
+ *   name: Comments
+ *   description: Comment APIs
+ */
 
 /**
  * @openapi
@@ -21,13 +28,32 @@ import { addComment } from "../controllers/comment.controller.js";
  *               authorName:
  *                 type: string
  *     responses:
+ *       201:
+ *         description: Comment created
+ */
+
+/**
+ * @openapi
+ * /comments/{photoId}:
+ *   get:
+ *     summary: Get all comments for a specific photo
+ *     tags: [Comments]
+ *     parameters:
+ *       - in: path
+ *         name: photoId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the photo to fetch comments
+ *     responses:
  *       200:
- *         description: Comment added
+ *         description: List of comments
  */
 
 
 const router = Router();
 
 router.post("/", addComment);
+router.get("/:photoId", getCommentsByPhotoId);
 
 export default router;

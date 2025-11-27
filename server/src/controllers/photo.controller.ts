@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { randomUUID } from "crypto";
 import { supabase } from "../lib/supabase.js";
 import { createPhotoRecord, getAllPhotos } from "../services/photo.service.js";
+import prisma from "../prisma/client.js";
 
 export const uploadPhoto = async (req: Request, res: Response) => {
   try {
@@ -35,4 +36,22 @@ export const uploadPhoto = async (req: Request, res: Response) => {
 export const listPhotos = async (_req: Request, res: Response) => {
   const photos = await getAllPhotos();
   res.json(photos);
+};
+
+export const getPhotoDetail = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const photo = await prisma.photo.findUnique({
+      where: { id },
+      include: { comments: true }  // optional
+    });
+
+    if (!photo) return res.status(404).json({ message: "Photo not found" });
+
+    res.json(photo);
+  } catch (err) {
+    console.error("Get Photo Detail Error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 };
